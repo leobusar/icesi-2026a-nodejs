@@ -1,24 +1,14 @@
 import express, {Request, Response} from 'express';
+import { userController } from './user.controller';
 
 export const userRouter = express.Router();
 
-userRouter.get("/", (req:Request, res: Response) => {
-    res.send("Get users"); 
-});
+userRouter.get("/", userController.getAll);
 
-userRouter.get("/:id", (req:Request, res: Response) => {
-    res.send(`Get user with id ${req.params.id}`); 
-});
+userRouter.get("/:id", userController.getOne);
 
-userRouter.post("/", (req:Request, res: Response) => {
-    let user = `email: ${req.body.email}, password: ${req.body.password}, name: ${req.body.name}`;
-    res.send(`user=> ${user}`); 
-});
+userRouter.post("/", userController.create);
 
-userRouter.put("/:id", (req:Request, res: Response) => {
-    res.send("Get users"); 
-});
+userRouter.put("/:id", userController.update);
 
-userRouter.delete("/:id", (req:Request, res: Response) => {
-    res.send("Get users"); 
-});
+userRouter.delete("/:id", userController.delete);
