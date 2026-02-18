@@ -55,17 +55,21 @@ class UserService {
     }
 
     public async generateToken(id: string): Promise<string> {
-        const user = await  this.findById(id); 
+        const user = await  this.findById(id);
+
+        process.loadEnvFile(); 
         if (user == null){
             throw new Error();
         }
+        const secret: string = process.env.JWT_SECRET || "";
+
         return jwt.sign({
                             id: user._id.toString(),
                             name: user.name, 
                             email: user.email
                         },
-                        "secret_key",
-                        {expiresIn: "10m"});
+                        secret,
+                        {expiresIn: "1m"});
     }
 }
 

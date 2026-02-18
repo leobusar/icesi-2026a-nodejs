@@ -1,6 +1,7 @@
 import express, {Express, Request, Response} from 'express';
 
-import {userRouter} from './users/user.route';
+import {userRouter} from './users/';
+
 import {db} from './config/connectionDB';
 
 const app: Express = express();
