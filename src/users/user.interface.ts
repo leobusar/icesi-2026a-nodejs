@@ -6,5 +6,10 @@ export interface UserInput{
 
 export interface UserUpdate {
     name: string,
-    email: string    
+    email: string 
+}
+
+export interface UserLogin {
+    email: string,
+    password: string
 }
